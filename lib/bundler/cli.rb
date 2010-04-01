@@ -98,8 +98,9 @@ module Bundler
     desc "lock", "Locks the bundle to the current set of dependencies, including all child dependencies."
     def lock
       if locked?
-        Bundler.ui.info("The bundle is already locked, relocking.")
+        Bundler.ui.info("The bundle is already locked, relocking and packaging gems.")
         remove_lockfiles
+        package
       end
 
       environment = Bundler.load
